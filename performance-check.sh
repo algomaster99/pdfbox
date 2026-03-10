@@ -26,7 +26,8 @@ echo
 for module in io fontbox xmpbox pdfbox preflight tools examples; do
     log "$module"
     sep
-    timed "no CDS"    java -Xshare:off  -cp "$JAR" "$MAIN" export:text -i "$PDF"
-    timed "AOT cache" java -XX:AOTCache="$module/cache.aot" -cp "$JAR" "$MAIN" export:text -i "$PDF"
+    timed "no CDS"        java -Xshare:off  -cp "$JAR" "$MAIN" export:text -i "$PDF"
+    timed  "CDS (default)" java -cp "$JAR" "$MAIN" export:text -i "$PDF"
+    timed "AOT cache"     java -XX:AOTCache="$module/cache.aot" -cp "$JAR" "$MAIN" export:text -i "$PDF"
     echo
 done
