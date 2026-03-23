@@ -16,7 +16,7 @@ if [ ! -f "$SINGLE_AOT" ]; then
   test -f "$SINGLE_JAR" || { echo "Missing $SINGLE_JAR (build app first)" >&2; exit 1; }
   test -f "test.pdf" || { echo "Missing test.pdf (expected at pdfbox/test.pdf)" >&2; exit 1; }
 
-  java -XX:AOTCacheOutput="$SINGLE_AOT" -jar "$SINGLE_JAR" export:text -i test.pdf
+  java -Xlog:aot -XX:AOTCacheOutput="$SINGLE_AOT" -jar "$SINGLE_JAR" export:text -i test.pdf
 fi
 
 test -f "$SINGLE_AOT"
