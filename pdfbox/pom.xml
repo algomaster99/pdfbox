@@ -880,5 +880,24 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>tree-merge</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>@{surefireArgLine} -Xmx768m -XX:AOTCacheOutput=cache.aot</argLine>
+              <excludes>
+                <exclude>org/apache/pdfbox/rendering/TestPDFToImage.java</exclude>
+              </excludes>
+              <systemPropertyVariables>
+                <java.util.logging.config.file>src/test/resources/logging.properties</java.util.logging.config.file>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
