@@ -61,19 +61,6 @@
   </build>
   <profiles>
     <profile>
-      <id>iterative-merge</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <argLine>-XX:AOTMode=merge -XX:AOTCache=../fontbox/cache.aot -XX:AOTCacheOutput=cache.aot</argLine>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>tree-merge</id>
       <build>
         <plugins>

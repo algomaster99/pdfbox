@@ -100,22 +100,6 @@
   </build>
   <profiles>
     <profile>
-      <id>iterative-merge</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <systemPropertyVariables>
-                <java.util.logging.config.file>src/test/resources/logging.properties</java.util.logging.config.file>
-              </systemPropertyVariables>
-              <argLine>-XX:AOTMode=merge -XX:AOTCache=../preflight/cache.aot -XX:AOTCacheOutput=cache.aot</argLine>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>tree-merge</id>
       <build>
         <plugins>
