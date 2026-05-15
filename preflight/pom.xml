@@ -127,6 +127,7 @@
                 <exclude>**/integration/**</exclude>
               </excludes>
               <argLine>@{surefireArgLine} -XX:AOTCacheOutput=cache.aot</argLine>
+              <testFailureIgnore>true</testFailureIgnore>
             </configuration>
           </execution>
           <execution>

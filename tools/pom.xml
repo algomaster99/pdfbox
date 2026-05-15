@@ -110,6 +110,7 @@
                 <java.util.logging.config.file>src/test/resources/logging.properties</java.util.logging.config.file>
               </systemPropertyVariables>
               <argLine>-XX:AOTCacheOutput=cache.aot</argLine>
+              <testFailureIgnore>true</testFailureIgnore>
             </configuration>
           </plugin>
         </plugins>

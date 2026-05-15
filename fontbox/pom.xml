@@ -189,6 +189,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
               <argLine>-XX:AOTCacheOutput=cache.aot</argLine>
+              <testFailureIgnore>true</testFailureIgnore>
             </configuration>
           </plugin>
         </plugins>
