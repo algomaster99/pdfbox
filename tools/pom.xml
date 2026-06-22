@@ -116,5 +116,29 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <!-- Iterative chain step 4/4: load pdfbox's iter.aot as base and fold
+           pdfbox-tools' classes into a new iter.aot. This is the final cache
+           for the pdfbox reactor; the next phase continues the chain from
+           pdfbox/tools/iter.aot into the third-party deps (bouncycastle, etc.).
+           Note: pdfbox-debugger has no tests so it is skipped in the chain;
+           its UI classes load from the jar at runtime (acceptable cold-path). -->
+      <id>iterative-merge</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <java.util.logging.config.file>src/test/resources/logging.properties</java.util.logging.config.file>
+                <org.apache.commons.logging.Log>org.apache.commons.logging.impl.Jdk14Logger</org.apache.commons.logging.Log>
+              </systemPropertyVariables>
+              <argLine>-XX:AOTCache=../pdfbox/iter.aot -XX:AOTCacheOutput=iter.aot</argLine>
+              <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>

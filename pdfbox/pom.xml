@@ -881,5 +881,28 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <!-- Iterative chain step 3/4: load fontbox's iter.aot as base and
+           fold pdfbox's classes into a new iter.aot. -->
+      <id>iterative-merge</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>@{surefireArgLine} -Xmx768m -XX:AOTCache=../fontbox/iter.aot -XX:AOTCacheOutput=iter.aot</argLine>
+              <testFailureIgnore>true</testFailureIgnore>
+              <excludes>
+                <exclude>org/apache/pdfbox/rendering/TestPDFToImage.java</exclude>
+              </excludes>
+              <systemPropertyVariables>
+                <java.util.logging.config.file>src/test/resources/logging.properties</java.util.logging.config.file>
+                <org.apache.commons.logging.Log>org.apache.commons.logging.impl.Jdk14Logger</org.apache.commons.logging.Log>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>

@@ -70,5 +70,25 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <!-- Iterative chain step 1/4: pdfbox-io is the first module in the
+           reactor, so there is no base cache to load — just emit iter.aot. -->
+      <id>iterative-merge</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>-XX:AOTCacheOutput=iter.aot</argLine>
+              <testFailureIgnore>true</testFailureIgnore>
+              <systemPropertyVariables>
+                <!-- Force JUL so log4j-api (test-only dep) is never archived -->
+                <org.apache.commons.logging.Log>org.apache.commons.logging.impl.Jdk14Logger</org.apache.commons.logging.Log>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>

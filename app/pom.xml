@@ -67,7 +67,17 @@
       <artifactId>jbig2-imageio</artifactId>
       <version>${jbig2.version}</version>
       <scope>provided</scope>
-    </dependency> 
+    </dependency>
+    <!-- log4j-api is needed at runtime when the AOT cache was recorded with
+         commons-logging's Log4jApiLogFactory active (log4j-jcl on test CP).
+         Scope=provided so maven-bundle-plugin embeds it via the org/apache/**
+         Embed-Dependency pattern. Only the API jar is needed; no implementation. -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
